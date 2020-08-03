@@ -99,3 +99,15 @@ $git reset --hard HARD^
   - 如果一个文件已经被提交到版本库，那么你永远不用担心误删;
   - 但是要小心，你只能恢复文件到最新版本:
     - 你会丢失最近一次提交后你修改的内容。
+
+# git checkout
+
+- git checkout -b dev
+- git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
+  - $ git branch dev
+  - $ git checkout dev
+
+# git branch
+
+- 查看当前分支;
+- 当前分支前面会标一个*号;
