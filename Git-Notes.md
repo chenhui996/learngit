@@ -115,3 +115,24 @@ $git reset --hard HARD^
 # git merge
 
 - 用于合并指定分支到当前分支
+
+# git switch
+
+- 切换分支这个动作，用switch更科学;
+- $ git switch -c dev
+  - 创建并切换到新的dev分支
+
+
+## 小结
+
+- Git鼓励大量使用分支：
+  - 查看分支：git branch
+  - 创建分支：git branch <name>
+  - 切换分支：
+    - git checkout <name>
+    - git switch <name>
+  - 创建+切换分支：
+    - git checkout -b <name>
+    - git switch -c <name>
+  - 合并某分支到当前分支：git merge <name>
+  - 删除分支：git branch -d <name>
