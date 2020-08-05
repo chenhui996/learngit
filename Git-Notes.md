@@ -171,3 +171,26 @@ $git reset --hard HARD^
   - 由于分支是如此的强大:
     - 所以，每个bug都可以通过一个新的临时分支来修复;
     - 修复后，合并分支，然后将临时分支删除;
+
+# git branch -d
+
+- 删除分支;
+
+# git stash
+
+- 把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
+
+# git stash list
+
+- Git把stash内容存在某个地方了;
+- 用git stash list查看目录;
+
+# 恢复stash
+
+- git stash apply恢复：
+  - 恢复后，stash内容并不删除;
+  - 还需要用git stash drop删除;
+  - 恢复指定的stash:
+    - git stash apply stash@{0}
+- git stash pop恢复;
+  - 恢复的同时把stash内容也删了
