@@ -163,13 +163,13 @@ $git reset --hard HARD^
   - git log --graph --pretty=oneline --abbrev-commit
   - 而 fast forward 合并就看不出来曾经做过合并;
 
-## Bug分支
+## Bug 分支
 
-- 软件开发中，bug就像家常便饭一样;
-- 有了bug就需要修复;
-- 在Git中:
+- 软件开发中，bug 就像家常便饭一样;
+- 有了 bug 就需要修复;
+- 在 Git 中:
   - 由于分支是如此的强大:
-    - 所以，每个bug都可以通过一个新的临时分支来修复;
+    - 所以，每个 bug 都可以通过一个新的临时分支来修复;
     - 修复后，合并分支，然后将临时分支删除;
 
 # git branch -d
@@ -182,15 +182,31 @@ $git reset --hard HARD^
 
 # git stash list
 
-- Git把stash内容存在某个地方了;
-- 用git stash list查看目录;
+- Git 把 stash 内容存在某个地方了;
+- 用 git stash list 查看目录;
 
-# 恢复stash
+# 恢复 stash
 
-- git stash apply恢复：
-  - 恢复后，stash内容并不删除;
-  - 还需要用git stash drop删除;
-  - 恢复指定的stash:
+- git stash apply 恢复：
+  - 恢复后，stash 内容并不删除;
+  - 还需要用 git stash drop 删除;
+  - 恢复指定的 stash:
     - git stash apply stash@{0}
-- git stash pop恢复;
-  - 恢复的同时把stash内容也删了
+- git stash pop 恢复;
+  - 恢复的同时把 stash 内容也删了
+
+# git cherry-pick
+
+- 能复制一个特定的提交到当前分支
+
+## 小结
+
+- 修复 bug 时，我们会通过创建新的 bug 分支进行修复;
+  - 然后合并，最后删除;
+- 当手头工作没有完成时，先把工作现场 git stash 一下;
+  - 然后去修复 bug;
+  - 修复后，再 git stash pop，回到工作现场;
+- 在 master 分支上修复的 bug:
+  - 想要合并到当前 dev 分支:
+    - 可以用 git cherry-pick `<commit>`命令;
+    - 把 bug 提交的修改“复制”到当前分支，避免重复劳动
