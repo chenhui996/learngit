@@ -46,19 +46,19 @@ $git reset --hard HARD^
 
 # 版本前进
 
-- 局限很大(未完善版本)：
+- 局限很大(未完善版本):
   - 首先，需要当前命令行窗口没关;
   - 然后往上查找到之前版本的 commit id;
   - 然后通过 git reset --hard 1095a 还原;
 - 版本号没必要写全，前几位就可以了，Git 会自动去找:
   - 也不能只写前一两位，因为 Git 可能会找到多个版本号，就无法确定是哪一个了;
-- 完善版本：
+- 完善版本:
   - 在 Git 中，总是有后悔药可以吃的;
-  - git reflog 用来记录你的每一次命令：
+  - git reflog 用来记录你的每一次命令:
 
 # git reflog
 
-- 用来记录你的每一次命令：
+- 用来记录你的每一次命令:
   - 从单行日志中找到 HEAD 指针指向变动的行:
     - 查询对应 commit id;
 
@@ -80,7 +80,7 @@ $git reset --hard HARD^
 # git checkout
 
 - git checkout -- readme.txt
-- 把 readme.txt 文件在工作区的修改全部撤销,这里有两种情况：
+- 把 readme.txt 文件在工作区的修改全部撤销,这里有两种情况:
   - 一种是 readme.txt 自修改后还没有被放到暂存区:
     - 现在，撤销修改就回到和'版本库'一模一样的状态;
   - 一种是 readme.txt 已经添加到暂存区后，又作了修改:
@@ -97,7 +97,7 @@ $git reset --hard HARD^
 # git rm
 
 - 从版本库中删除该文件;
-- 命令git rm用于删除一个文件;
+- 命令 git rm 用于删除一个文件;
   - 如果一个文件已经被提交到版本库，那么你永远不用担心误删;
   - 但是要小心，你只能恢复文件到最新版本:
     - 你会丢失最近一次提交后你修改的内容。
@@ -105,14 +105,14 @@ $git reset --hard HARD^
 # git checkout
 
 - git checkout -b dev
-- git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
-  - $ git branch dev
-  - $ git checkout dev
+- git checkout 命令加上-b 参数表示创建并切换，相当于以下两条命令:
+  - \$ git branch dev
+  - \$ git checkout dev
 
 # git branch
 
 - 查看当前分支;
-- 当前分支前面会标一个*号;
+- 当前分支前面会标一个\*号;
 
 # git merge
 
@@ -120,26 +120,54 @@ $git reset --hard HARD^
 
 # git switch
 
-- 切换分支这个动作，用switch更科学;
-- $ git switch -c dev
-  - 创建并切换到新的dev分支
-
+- 切换分支这个动作，用 switch 更科学;
+- \$ git switch -c dev
+  - 创建并切换到新的 dev 分支
 
 ## 小结
 
-- Git鼓励大量使用分支：
-  - 查看分支：git branch
-  - 创建分支：git branch <name>
-  - 切换分支：
+- Git 鼓励大量使用分支:
+  - 查看分支:git branch
+  - 创建分支:git branch <name>
+  - 切换分支:
     - git checkout <name>
     - git switch <name>
-  - 创建+切换分支：
+  - 创建+切换分支:
     - git checkout -b <name>
     - git switch -c <name>
-  - 合并某分支到当前分支：git merge <name>
-  - 删除分支：git branch -d <name>
+  - 合并某分支到当前分支:git merge <name>
+  - 删除分支:git branch -d <name>
 
 # --no-ff
 
 - 参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并:
-  - 而fast forward合并就看不出来曾经做过合并;
+  - 而 fast forward 合并就看不出来曾经做过合并;
+
+## 分支策略
+
+- 在实际开发中，我们应该按照几个基本原则进行分支管理:
+  - 首先，master 分支应该是非常稳定的:
+    - 也就是仅用来发布新版本，平时不能在上面干活;
+  - 那在哪干活呢？干活都在 dev 分支上:
+    - 也就是说，dev 分支是不稳定的:
+      - 到某个时候，比如 1.0 版本发布时，再把 dev 分支合并到 master 上;
+      - 在 master 分支发布 1.0 版本;
+  - 你和你的小伙伴们每个人都在 dev 分支上干活:
+    - 每个人都有自己的分支，时不时地往 dev 分支上合并就可以了;
+
+## 小结
+
+- Git 分支十分强大，在团队开发中应该充分应用;
+- 合并分支时，加上--no-ff 参数就可以用普通模式合并;
+  - 合并后的历史有分支，能看出来曾经做过合并:
+  - git log --graph --pretty=oneline --abbrev-commit
+  - 而 fast forward 合并就看不出来曾经做过合并;
+
+## Bug分支
+
+- 软件开发中，bug就像家常便饭一样;
+- 有了bug就需要修复;
+- 在Git中:
+  - 由于分支是如此的强大:
+    - 所以，每个bug都可以通过一个新的临时分支来修复;
+    - 修复后，合并分支，然后将临时分支删除;
