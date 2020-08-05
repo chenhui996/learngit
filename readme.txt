@@ -9,3 +9,5 @@ Creating a new branch is quick and simple.
 
 
 0805dev
+
+Git is a free software distributed under the GPL.
