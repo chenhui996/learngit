@@ -21,6 +21,8 @@
 - 命令显示从最近到最远的提交日志;
 - --pretty=oneline 参数:
   - 单行显示提交日志;
+- git log --graph
+  - 可以看到分支合并图;
 
 # 回退版本
 
@@ -136,3 +138,8 @@ $git reset --hard HARD^
     - git switch -c <name>
   - 合并某分支到当前分支：git merge <name>
   - 删除分支：git branch -d <name>
+
+# --no-ff
+
+- 参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并:
+  - 而fast forward合并就看不出来曾经做过合并;
